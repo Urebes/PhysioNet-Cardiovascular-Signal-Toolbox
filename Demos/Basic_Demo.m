@@ -64,6 +64,17 @@ figure(1)
 hold on;
 plot(r_peaks./Fs, ecg(r_peaks),'o');
 legend('ecg signal', 'detected R peaks')
+hold off
+
+% line up the detected peaks and estimate the periodicity in it 
+[pxx,f] = periodogram(ecg(r_peaks),[],[],fs);
+
+plot(f,pxx)
+ax = gca;
+ax.XLim = [0 10];
+xlabel('Frequency')
+ylabel('Magnitude')
+
 
 
 
